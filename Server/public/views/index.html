@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SPY Walk Rally</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+
+<body>
+	
+
+    <section class="hero is-medium is-black">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns">
+            <div class="column is-8-desktop is-offset-2-desktop">
+              <h1 class="title is-2 is-spaced">
+                SPY Walk Rally
+              </h1>
+              <h2 class="subtitle is-4">
+                  ทดสอบ <strong>ทดสอบ</strong> ทดสอบ
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+	<section class="section">
+		<div class="container">
+			<div class="columns">
+				<div class="column">
+					<a class="navbar-item button is-light" href="/">
+			        	Home
+			      	</a>
+			      </div>
+			      <div class="column">
+			      	<a class="navbar-item button is-dark" href="/registration">
+				        Final Checkpoint
+					</a>
+				</div>
+		  	</div>
+		</div>
+	</section>
+
+    <section class="section">
+    	<div class="container">
+
+    		<table class="table  is-fullwidth">
+			  <thead>
+			    <tr>
+			      <th><abbr title=""></abbr></th>
+			      <th>Fullname</th>
+			      <th><abbr title="Station 1"><a href="/?sort_by=station_1_time">Station 1</a></abbr></th>
+			      <th><abbr title="Station 2"><a href="/?sort_by=station_2_time">Station 2</a></abbr></th>
+			      <th><abbr title="Station 3"><a href="/?sort_by=station_3_time">Station 3</a></abbr></th>
+			      <th><abbr title="Total Time"><a href="/?sort_by=total_time">Total Time</a></abbr></th>
+			      <th><abbr title="Complete Date"><a href="/?sort_by=complete_timestamp">Complete Date</a></abbr></th>
+			    </tr>
+			  </thead>
+			  <tfoot>
+			    <tr>
+			      <th><abbr title=""></abbr></th>
+			      <th>Fullname</th>
+			      <th><abbr title="Station 1">Station 1</abbr></th>
+			      <th><abbr title="Station 2">Station 2</abbr></th>
+			      <th><abbr title="Station 3">Station 3</abbr></th>
+			      <th><abbr title="Total Time">Total Time</abbr></th>
+			      <th><abbr title="Complete Date">Complete Date</abbr></th>
+			    </tr>
+			  </tfoot>
+			  <tbody>
+			  	<% for(var i = 0; i < rows.length; i++) { %>
+				    <tr>
+				      <th><%= i+1 %></th>
+				      <td><%= rows[i].firstname %> <%= rows[i].lastname %></td>
+				      <td><%= rows[i].station_1_time %></td>
+				      <td><%= rows[i].station_2_time %></td>
+				      <td><%= rows[i].station_3_time %></td>
+				      <td><%= rows[i].total_time %></td>
+				      <td><%= rows[i].complete_timestamp %></td>
+				    </tr>
+			    <% } %>
+			  </tbody>
+			</table>
+
+
+      	</div>
+  	</section>
+
+
+    <footer class="footer has-text-centered">
+      <div class="container">
+         <div class="columns">
+          <div class="column is-8-desktop is-offset-2-desktop">
+            <p style="margin-top: 1rem;">
+            	NSM ITM
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+
+  <script type="text/javascript" src="../assets/js/jquery-3.3.1.js"></script>
+  <script type="text/javascript">
+  	$(document).ready(function() {
+  		console.log('Ready');
+  	});
+  </script>
+  
+</html>
