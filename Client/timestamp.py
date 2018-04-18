@@ -65,7 +65,7 @@ def sync_table(last_id):
 	sync_result = requests.get(server_endpoint, params=payload)
 
 	if(sync_result.status_code == 200):
-		sql = 'update '+table_name+' set sync_status = done where tx_id = %s' % (last_id)
+		sql = 'update '+table_name+' set sync_status = "done" where tx_id = %s' % (last_id)
 		c.execute(sql)
 		conn.commit();
 
