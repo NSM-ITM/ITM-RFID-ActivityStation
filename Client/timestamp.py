@@ -11,7 +11,7 @@ database_file = 'local_mission_timestamp.db'
 table_name = 'mission_time'
 station = 'dummy'
 previous_line = ''
-server_endpoint = 'http://192.168.100.1/'
+server_endpoint = 'http://192.168.1.100:3000/sync-table'
 
 def create_table_if_not_exist():
 

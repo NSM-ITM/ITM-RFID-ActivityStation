@@ -189,6 +189,6 @@ app.get('/test-db-function', function(req, res) {
 	res.send('done');
 });
 
-console.log('please make sure this machine is assigned IP address 192.168.1.101')
+console.log('please make sure this machine is assigned IP address 192.168.1.100')
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'))
