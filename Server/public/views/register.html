@@ -12,16 +12,11 @@
 	
 
     <section class="hero is-medium is-black">
-      <div class="hero-body">
+      <div class="hero-body" style="padding-bottom: 3rem;padding-top: 3rem;">
         <div class="container">
           <div class="columns">
             <div class="column is-8-desktop is-offset-2-desktop">
-              <h1 class="title is-2 is-spaced">
-                SPY Walk Rally
-              </h1>
-              <h2 class="subtitle is-4">
-                  ทดสอบ <strong>ทดสอบ</strong> ทดสอบ
-              </h2>
+              <img src="../assets/image/spy-cover-logo.png" style="display:inline-block" width="500">
             </div>
           </div>
         </div>
@@ -37,6 +32,11 @@
 			      	</a>
 			      </div>
 			      <div class="column">
+			      	<a class="navbar-item button is-dark" href="/player">
+				        Current Players
+					</a>
+				</div>
+			      <div class="column">
 			      	<a class="navbar-item button is-light" href="/registration">
 				        Final Checkpoint
 					</a>
@@ -47,7 +47,7 @@
 
 	<form action="" method="post" id="form1">
     <section class="section">
-    	<div class="container">
+    	<div class="container"  id="disp">
 
     		<div class="field">
 			  <label class="label is-large">Token</label>
@@ -118,6 +118,16 @@
   <script type="text/javascript">
   	$(document).ready(function() {
   		console.log('Ready');
+
+
+		$(window).keydown(function(event){
+			if(event.keyCode == 13) {
+				event.preventDefault();
+				return false;
+			}
+		});
+
   	});
+
   </script>
 </html>

@@ -16,7 +16,9 @@
         <div class="container">
           <div class="columns">
             <div class="column is-8-desktop is-offset-2-desktop">
+
               <img src="../assets/image/spy-cover-logo.png" style="display:inline-block" width="500">
+
             </div>
           </div>
         </div>
@@ -28,12 +30,12 @@
 		<div class="container">
 			<div class="columns">
 				<div class="column">
-					<a class="navbar-item button is-light" href="/">
+					<a class="navbar-item button is-dark" href="/">
 			        	Home
 			      	</a>
 			      </div>
 			      <div class="column">
-			      	<a class="navbar-item button is-dark" href="/player">
+			      	<a class="navbar-item button is-light" href="/player">
 				        Current Players
 					</a>
 				</div>
@@ -53,35 +55,17 @@
 			  <thead>
 			    <tr>
 			      <th><abbr title=""></abbr></th>
-			      <th>Fullname</th>
-			      <th><abbr title="Station 1"><a href="/?sort_by=station_1_time#disp">Station 1</a></abbr></th>
-			      <th><abbr title="Station 2"><a href="/?sort_by=station_2_time#disp">Station 2</a></abbr></th>
-			      <th><abbr title="Station 3"><a href="/?sort_by=station_3_time#disp">Station 3</a></abbr></th>
-			      <th><abbr title="Total Time"><a href="/?sort_by=total_time#disp">Total Time</a></abbr></th>
-			      <th><abbr title="Complete Date"><a href="/?sort_by=complete_timestamp#disp">Complete Date</a></abbr></th>
+			      <th><abbr title="Token ID">Token ID</abbr></th>
+			      <th><abbr title="Tracking Station">Tracking Station</abbr></th>
 			    </tr>
 			  </thead>
-			  <tfoot>
-			    <tr>
-			      <th><abbr title=""></abbr></th>
-			      <th>Fullname</th>
-			      <th><abbr title="Station 1">Station 1</abbr></th>
-			      <th><abbr title="Station 2">Station 2</abbr></th>
-			      <th><abbr title="Station 3">Station 3</abbr></th>
-			      <th><abbr title="Total Time">Total Time</abbr></th>
-			      <th><abbr title="Complete Date">Complete Date</abbr></th>
-			    </tr>
-			  </tfoot>
 			  <tbody>
 			  	<% for(var i = 0; i < rows.length; i++) { %>
 				    <tr>
 				      <th><%= i+1 %></th>
-				      <td><%= rows[i].firstname %> <%= rows[i].lastname %></td>
-				      <td><%= rows[i].station_1_time %></td>
-				      <td><%= rows[i].station_2_time %></td>
-				      <td><%= rows[i].station_3_time %></td>
-				      <td><%= rows[i].total_time %></td>
-				      <td><%= rows[i].complete_timestamp %></td>
+				      <td><%= rows[i].token %></td>
+				      <td><%= rows[i].station %></td>
+				      <!--<td><%= rows[i].timestamp %></td>-->
 				    </tr>
 			    <% } %>
 			  </tbody>

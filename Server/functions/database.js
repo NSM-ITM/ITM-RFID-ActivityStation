@@ -33,6 +33,7 @@ module.exports = {
 	    '`firstname` TEXT,' +
 	    '`lastname` TEXT,' +
 	    '`email` TEXT,' +
+	    '`telephone` TEXT,' +
 	    '`used_token` TEXT,' +
 	    '`remarks` TEXT,' +
 	    '`registration_timestamp` TEXT);');
@@ -87,7 +88,7 @@ module.exports = {
 
 		});
 
-		db.run('INSERT INTO `activity_result` (user_id, station_1_time, station_2_time, station_3_time, total_time, complete_timestamp) values (?, ?, ?, ?, ?, DATETIME("now"))',
+		db.run('INSERT INTO `activity_result` (user_id, station_1_time, station_2_time, station_3_time, total_time, complete_timestamp) values (?, ?, ?, ?, ?, DATETIME("now", "localtime"))',
 				 [dataset.user_id, dataset.station_1_time, dataset.station_2_time, dataset.station_3_time, dataset.total_time], function(err) {
   		
 	  		if (err) {
@@ -125,6 +126,27 @@ module.exports = {
 		
 		db.close();
 	},
+	getUnmappedUsedTime: function(dataset, callback) {
+		var db = new sqlite3.Database('central_timestamp.db',  sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
+		  if (err) {
+		    console.error(err.message);
+		    return 1;
+		  }
+
+		});
+
+		db.all('SELECT station, timestamp FROM `unmapped_tx` WHERE token = ? ORDER BY timestamp ASC', [dataset.token ], function(err, rows) {
+  		
+	  		if (err) {
+		      return console.log(err.message);
+	    	}
+
+	    	callback(rows);
+
+  		});
+		
+		db.close();
+	},
 	getMappedUsedTime: function(dataset, callback) {
 		var db = new sqlite3.Database('central_timestamp.db',  sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
 		  if (err) {
@@ -146,6 +168,27 @@ module.exports = {
 		
 		db.close();
 	},
+	getStartUnfinishToken: function(callback) {
+		var db = new sqlite3.Database('central_timestamp.db',  sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
+		  if (err) {
+		    console.error(err.message);
+		    return 1;
+		  }
+
+		});
+
+		db.all('SELECT station, token, timestamp FROM `unmapped_tx` ORDER BY rowid ASC', [ ], function(err, rows) {
+  		
+	  		if (err) {
+		      return console.log(err.message);
+	    	}
+	    	
+	    	callback(rows);
+
+  		});
+		
+		db.close();
+	},
 	insertUserData: function(dataset, callback) {
 		var db = new sqlite3.Database('central_timestamp.db',  sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
 		  if (err) {
@@ -155,8 +198,8 @@ module.exports = {
 
 		});
 
-		db.run('INSERT INTO `user_data` (firstname, lastname, email, used_token, registration_timestamp) \
-			values (?, ?, ?, ?, DATETIME("now"))', [dataset.firstname, dataset.lastname, dataset.email, dataset.used_token ], function(err) {
+		db.run('INSERT INTO `user_data` (firstname, lastname, email, telephone, used_token, registration_timestamp) \
+			values (?, ?, ?, ?, ?, DATETIME("now"))', [dataset.firstname, dataset.lastname, dataset.email, dataset.telephone, dataset.used_token ], function(err) {
   		
 	  		if (err) {
 		      return console.log(err.message);
@@ -218,8 +261,8 @@ module.exports = {
 			});
 
 
-			// remove unmaped tx - skipped during test
-			//removeUmmap(db, dataset.token);
+			// remove unmaped tx
+			removeUmmap(db, dataset.token);
 
 
 		});
